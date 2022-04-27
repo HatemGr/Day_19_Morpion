@@ -22,20 +22,20 @@
 # def blink;          "\e[5m#{self}\e[25m" end
 # def reverse_color;  "\e[7m#{self}\e[27m" end
 
-# TEXT = "TEXTS A AFFICHER"
+TEXT = "TEXTS A AFFICHER"
 
-# for i in [*30..37]
-#   puts "\e[#{i}m#{TEXT}\e[0m"
-# end
+for i in [*30..37]
+  puts "\e[#{i}m#{TEXT}\e[0m"
+end
 
-# for i in [*40..47]
-#   puts "\e[#{i}m#{TEXT}\e[0m"
-# end
+for i in [*40..47]
+  puts "\e[#{i}m#{TEXT}\e[0m"
+end
 
-# for i in [*40..47]
-#   puts "\e[#{i}m#{TEXT}\e[0m"
-# end
+for i in [*40..47]
+  puts "\e[#{i}m#{"     "}\e[0m"
+end
 
 # "ABCDF".green
 
-[*3..5].each{|i| puts i}
+puts (3..5).class

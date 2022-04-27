@@ -8,4 +8,6 @@ require 'views/board_case'
 require 'views/board'
 require 'views/header'
 
-Board.new().display_row(0)
+#Board.new().display_board
+myplayer = Player.new("Paul")
+myplayer.choose_case("A")
