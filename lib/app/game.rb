@@ -1,29 +1,42 @@
 class Game
-  attr_accessor :myboard, :round_number
+  attr_accessor :myboard, :round_number, :player_on
   @@player_list = []
   
-  def initialize(player_1,player_2)
+  def initialize()
     ### --- Creation des joureurs
-    @player_1 = player_1
-    @player_2 = player_2
+    puts "Quel est le nom du Joueur 1 ?"
+    p1_name = gets.chomp
+    puts "Quel est le nom du Joueur 2 ?"
+    p2_name = gets.chomp
 
+    rand(1..2) == 1 ? (p1_symbol = "X" ; p2_symbol = "O") : (p1_symbol = "O" ; p2_symbol = "X")
+
+    @player_1 = Player.new(p1_name,p1_symbol)
+    @player_2 = Player.new(p2_name,p2_symbol)
+    @@player_list << @player_1
+    @@player_list << @player_2
+
+    puts "#{@player_1.name} aura les #{p1_symbol} et #{@player_2.name} aura les #{p2_symbol}."
+
+    @player_on = @@player_list.select{|player| player.symbol == "X"}.first
+    
     ### --- Ceation des cases du board
-    case_ = Board_Case.new(" "," ")
-    case1 = Board_Case.new(" ","1")
-    case2 = Board_Case.new(" ","2")
-    case3 = Board_Case.new(" ","3")
-    caseA = Board_Case.new(" ","A")
-    caseA1 = Board_Case.new("A1"," ")
-    caseA2 = Board_Case.new("A2"," ")
-    caseA3 = Board_Case.new("A3"," ")
-    caseB = Board_Case.new(" ","B")
-    caseB1 = Board_Case.new("B1"," ")
-    caseB2 = Board_Case.new("B2"," ")
-    caseB3 = Board_Case.new("B3"," ")
-    caseC = Board_Case.new(" ","C")
-    caseC1 = Board_Case.new("C1"," ")
-    caseC2 = Board_Case.new("C2"," ")
-    caseC3 = Board_Case.new("C3"," ")
+    Board_Case.new(" "," ")
+    Board_Case.new(" ","1")
+    Board_Case.new(" ","2")
+    Board_Case.new(" ","3")
+    Board_Case.new(" ","A")
+    Board_Case.new("A1"," ")
+    Board_Case.new("A2"," ")
+    Board_Case.new("A3"," ")
+    Board_Case.new(" ","B")
+    Board_Case.new("B1"," ")
+    Board_Case.new("B2"," ")
+    Board_Case.new("B3"," ")
+    Board_Case.new(" ","C")
+    Board_Case.new("C1"," ")
+    Board_Case.new("C2"," ")
+    Board_Case.new("C3"," ")
 
     ### --- Creation du board
     @myboard = Board.new(Board_Case.all)
@@ -37,9 +50,13 @@ class Game
     @myboard.display_board
   end
 
-  def player_move(player)
-    puts "#{player.name}, à toi de jouer ! Choisi la case ou jouer :"
-    player.choose_case(Board_Case.all)
+  def player_switch
+    @player_on == @@player_list[0] ? @player_on = @@player_list[1] : @player_on = @@player_list[0]
+  end
+
+  def player_move()
+    puts "#{@player_on.name}, à toi de jouer ! Choisi la case ou jouer :"
+    @player_on.choose_case(Board_Case.all)
   end
 
   def next_round
@@ -76,6 +93,7 @@ class Game
     all_checks = []
     row_list.each {|row| all_checks << check_horizontal_win(row)}
     colum_list.each{|column| all_checks << check_vertical_win(column)}
+    all_checks << check_diagonal_win
     return all_checks.include?(true)
   end
 
