@@ -1,10 +1,10 @@
 class Player
-  attr_accessor :name, :symbol, :points
+  attr_accessor :name, :symbol, :score
 
   def initialize(player_name,symbol)
     @name = player_name
     @symbol = symbol
-    @points = 0
+    @score = 0
   end
 
   def check_input(input) 

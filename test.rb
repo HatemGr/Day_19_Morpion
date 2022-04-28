@@ -1,3 +1,5 @@
+require 'colorize'
+
 # def black;          "\e[30m#{self}\e[0m" end
 # def red;            "\e[31m#{self}\e[0m" end
 # def green;          "\e[32m#{self}\e[0m" end
@@ -22,10 +24,10 @@
 # def blink;          "\e[5m#{self}\e[25m" end
 # def reverse_color;  "\e[7m#{self}\e[27m" end
 
-# TEXT = "TEXTS A AFFICHER"
+# TEXT = "X"
 
 # for i in [*30..37]
-#   puts "\e[#{i}m#{TEXT}\e[0m"
+#   puts "\e[#{i}m#{TEXT}\e[0m".size
 # end
 
 # for i in [*40..47]
@@ -36,7 +38,7 @@
 #   puts "\e[#{i}m#{"     "}\e[0m"
 # end
 
-# # "ABCDF".green
+puts "A".white.on_red.size
 
 # puts (3..5).class
 
@@ -56,8 +58,18 @@
 #   puts "Not good"
 # end
 
-if !(1 == 1)
-  puts "Bad"
-else
-  puts "Good"
-end
+# [0,1,2,3].each do |i|
+#   puts i
+# end
+
+# liste1 = [1,2,3,4]
+# liste2 = [5,6,7,8]
+
+# liste = [liste1,liste2]
+
+# puts liste[0][0]
+
+# x_red = "X".colorize(:white).colorize(:background => :red)
+# o_green = "X".colorize(:white).colorize(:background => :green)
+
+# puts o_green.size

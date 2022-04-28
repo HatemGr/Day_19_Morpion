@@ -1,4 +1,5 @@
 require 'bundler'
+require 'colorize'
 Bundler.require
 
 $:.unshift File.expand_path("./../lib", __FILE__)
@@ -10,12 +11,18 @@ require 'views/header'
 
 mygame = Game.new()
 
-until mygame.round_number == 9 || mygame.check_win
-  mygame.player_switch
+while mygame.game_on
+  mygame.game_reset
+  until mygame.round_number == 10 || mygame.check_win
+    system("clear")
+    mygame.player_switch
+    mygame.display_header
+    mygame.display_board
+    mygame.player_move
+    mygame.next_round
+  end
+  mygame.display_header
   mygame.display_board
-  mygame.player_move
-  mygame.display_board
-  mygame.next_round
+  mygame.end_game
+  mygame.rematch?
 end
-
-puts "C'est fini !!! #{mygame.player_on.name} a gagné"

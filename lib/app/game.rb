@@ -1,24 +1,29 @@
 class Game
-  attr_accessor :myboard, :round_number, :player_on
+  attr_accessor :myboard, :round_number, :player_on, :game_on
   @@player_list = []
   
   def initialize()
-    ### --- Creation des joureurs
+    ### --- Creation des joueurs
+    # ----- Choix des noms
     puts "Quel est le nom du Joueur 1 ?"
     p1_name = gets.chomp
     puts "Quel est le nom du Joueur 2 ?"
     p2_name = gets.chomp
-
-    rand(1..2) == 1 ? (p1_symbol = "X" ; p2_symbol = "O") : (p1_symbol = "O" ; p2_symbol = "X")
-
+    # ----- Distribution des symboles
+    # x_red = "X".colorize(:white).colorize(:background => :red)
+    # o_green = "X".colorize(:white).colorize(:background => :green)
+    x_red = "X"
+    o_green = "O"
+    rand(1..2) == 1 ? (p1_symbol = x_red ; p2_symbol = o_green) : (p1_symbol = o_green ; p2_symbol = x_red)
+    # ----- Instantiation et ajout des joueurs dans une liste de classe
     @player_1 = Player.new(p1_name,p1_symbol)
     @player_2 = Player.new(p2_name,p2_symbol)
     @@player_list << @player_1
     @@player_list << @player_2
-
+    # ----- Petit message au terminal
     puts "#{@player_1.name} aura les #{p1_symbol} et #{@player_2.name} aura les #{p2_symbol}."
-
-    @player_on = @@player_list.select{|player| player.symbol == "X"}.first
+    # ----- Celui qui a les "X" commence sachant que l'on switch en entrant dans la boucle
+    @player_on = @@player_list.select{|player| player.symbol == "O"}.first
     
     ### --- Ceation des cases du board
     Board_Case.new(" "," ")
@@ -44,10 +49,21 @@ class Game
     ## --- Initialisation du round à 1
     @round_number = 1
 
+    ## --- Initialisation du header
+    @myheader = Header.new(@player_1,@player_2)
+
+    ## --- Au debut le jeu est en cours
+    @game_on = true
+
   end
 
   def display_board
     @myboard.display_board
+  end
+
+  def display_header
+    @myheader.display_header_score
+    @myheader.display_header_turn(@player_on)
   end
 
   def player_switch
@@ -95,6 +111,34 @@ class Game
     colum_list.each{|column| all_checks << check_vertical_win(column)}
     all_checks << check_diagonal_win
     return all_checks.include?(true)
+  end
+
+  def end_game
+    if self.check_win
+      puts "C'est fini !!! #{@player_on.name} a gagné"
+      @player_on.score += 1
+    else
+      puts "C'est un match nul !"
+    end
+
+  end
+
+  def rematch?
+    input = ""
+    puts "Souhaitez vous recommencer une partie ? [o/n]"
+    print "->"
+    input = gets.chomp
+    until input.downcase =~ /[on]/
+      "Repondre o,O,n ou N sinon moi pas comprendre."
+      print "->"
+      input = gets.chomp
+    end
+    input.downcase == "o" ? @game_on = true : @game_on = false
+  end
+
+  def game_reset
+    Board_Case.reset
+    @round_number = 1
   end
 
 end

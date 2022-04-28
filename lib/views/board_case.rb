@@ -10,7 +10,7 @@ class Board_Case ### TOUTE LA GRILLE (ABC,123, XO)
   end
 
   def to_s
-    puts "Coordonnée #{@coordinate}"
+    puts "Coordonnée : #{@coordinate}"
     puts "Contenu : #{@content}"
   end
 
@@ -21,6 +21,10 @@ class Board_Case ### TOUTE LA GRILLE (ABC,123, XO)
 
   def self.all
     return @@board_case_list
+  end
+
+  def self.reset
+    @@board_case_list.each.with_index {|board_case,i| board_case.coordinate == " " ? board_case : @@board_case_list[i].content = " " }
   end
 
 end
