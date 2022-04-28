@@ -4,6 +4,10 @@ class Header
     @player_2 = player_2
   end
 
+  def display_round(session_number)
+    puts "Partie ##{session_number}".center(33," ")
+  end
+
   def display_header_score
     puts "#{@player_1.name}".ljust(17," ") + "#{@player_2.name}".rjust(16," ")
     puts "Symbole : #{@player_1.symbol}".ljust(17," ") + "Symbole : #{@player_2.symbol}".rjust(16," ")

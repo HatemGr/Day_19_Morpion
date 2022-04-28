@@ -46,7 +46,8 @@ class Game
     ### --- Creation du board
     @myboard = Board.new(Board_Case.all)
 
-    ## --- Initialisation du round à 1
+    ## --- Initialisation du round à 1 et partie 1
+    @session_number = 0
     @round_number = 1
 
     ## --- Initialisation du header
@@ -62,6 +63,7 @@ class Game
   end
 
   def display_header
+    @myheader.display_round(@session_number)
     @myheader.display_header_score
     @myheader.display_header_turn(@player_on)
   end
@@ -139,6 +141,7 @@ class Game
   def game_reset
     Board_Case.reset
     @round_number = 1
+    @session_number += 1
   end
 
 end
