@@ -12,7 +12,6 @@ class Board
     puts horizontal_line * (@width * 4 - 3)
     puts gap_line * 4 + "|"
     str = ""
-    #[*0..3].each{|i| str << ("|" + " ".rjust(@width/2-1," ") + @board_case_list[i + line_mumber * 4].content.ljust(@width/2," ")) }
     [*0..3].each{|i| str << ("|" + " ".rjust(@width/2-1," ") + @board_case_list[i + line_mumber * 4].content + " ".rjust(@width/2 - 1," ")) }
     puts str + "|"
     puts gap_line * 4 + "|"
