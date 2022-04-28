@@ -152,6 +152,7 @@ class Game
         self.player_move
         self.next_round
       end
+      system("clear")
       self.display_header
       self.display_board
       self.end_game
