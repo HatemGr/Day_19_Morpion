@@ -15,7 +15,6 @@ class Board_Case ### TOUTE LA GRILLE (ABC,123, XO)
   end
 
   def change_status (player_symbol)
-    #@content == " " ? @content = player_symbol : (puts "Tu ne peux pas jouer ce coup.")
     @content = player_symbol
   end
 

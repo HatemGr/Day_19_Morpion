@@ -10,10 +10,8 @@ class Game
     puts "Quel est le nom du Joueur 2 ?"
     p2_name = gets.chomp
     # ----- Distribution des symboles
-    # x_red = "X".colorize(:white).colorize(:background => :red)
-    # o_green = "X".colorize(:white).colorize(:background => :green)
-    x_red = "X"
-    o_green = "O"
+    x_red = "X".colorize(:white).colorize(:background => :red)
+    o_green = "O".colorize(:white).colorize(:background => :green)
     rand(1..2) == 1 ? (p1_symbol = x_red ; p2_symbol = o_green) : (p1_symbol = o_green ; p2_symbol = x_red)
     # ----- Instantiation et ajout des joueurs dans une liste de classe
     @player_1 = Player.new(p1_name,p1_symbol)
@@ -23,7 +21,7 @@ class Game
     # ----- Petit message au terminal
     puts "#{@player_1.name} aura les #{p1_symbol} et #{@player_2.name} aura les #{p2_symbol}."
     # ----- Celui qui a les "X" commence sachant que l'on switch en entrant dans la boucle
-    @player_on = @@player_list.select{|player| player.symbol == "O"}.first
+    @player_on = @@player_list.select{|player| player.symbol == o_green}.first
     
     ### --- Ceation des cases du board
     Board_Case.new(" "," ")
@@ -122,7 +120,6 @@ class Game
     else
       puts "C'est un match nul !"
     end
-
   end
 
   def rematch?
@@ -161,7 +158,4 @@ class Game
       self.rematch?
     end
   end
-
-  
-
 end
