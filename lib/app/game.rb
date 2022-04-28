@@ -144,4 +144,24 @@ class Game
     @session_number += 1
   end
 
+  def perform
+    while self.game_on
+      self.game_reset
+      until self.round_number == 10 || self.check_win
+        system("clear")
+        self.player_switch
+        self.display_header
+        self.display_board
+        self.player_move
+        self.next_round
+      end
+      self.display_header
+      self.display_board
+      self.end_game
+      self.rematch?
+    end
+  end
+
+  
+
 end
