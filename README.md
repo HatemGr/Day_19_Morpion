@@ -8,7 +8,7 @@ De la class Board, de la class Player, de la class Game... en veux-tu en voila !
 
 Lance app.rb et ensuite tout se passe dans le terminal.
 Il faudra saisir dans un premier temps les noms des joueurs 1 et 2.
-Le jeu va attribuer au hazard le "O" et le "X" à ces derniers. Celui qui a les "O" commence.
+Le jeu va attribuer au hazard le "O" et le "X" à ces derniers. Celui qui a les "X" commence.
 
 Pour jouer : Selectionne une case en tapant sa coordonnée LETTRE/NOMBRE 
 *(Exemple : A1, C2, B3...)*
