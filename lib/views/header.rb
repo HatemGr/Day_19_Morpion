@@ -1,6 +1,7 @@
 class Header
-  def initialize(attribute)
-    @attribute = attribute
+  def initialize(player_1,player_2)
+    @player_1 = player_1
+    @player_2 = player_2
   end
 
 end

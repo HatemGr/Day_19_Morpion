@@ -22,20 +22,42 @@
 # def blink;          "\e[5m#{self}\e[25m" end
 # def reverse_color;  "\e[7m#{self}\e[27m" end
 
-TEXT = "TEXTS A AFFICHER"
+# TEXT = "TEXTS A AFFICHER"
 
-for i in [*30..37]
-  puts "\e[#{i}m#{TEXT}\e[0m"
+# for i in [*30..37]
+#   puts "\e[#{i}m#{TEXT}\e[0m"
+# end
+
+# for i in [*40..47]
+#   puts "\e[#{i}m#{TEXT}\e[0m"
+# end
+
+# for i in [*40..47]
+#   puts "\e[#{i}m#{"     "}\e[0m"
+# end
+
+# # "ABCDF".green
+
+# puts (3..5).class
+
+# sum = 0
+# for i in (1..1000)
+  
+#   sum += rand(1..2)
+# end
+
+# puts sum/1000.to_f
+
+# input=gets.chomp
+
+# if input.upcase[0] =~ /[ABC]/ && input[1] =~ /[123]/ && input.size == 2
+#   puts "Good"
+# else
+#   puts "Not good"
+# end
+
+if !(1 == 1)
+  puts "Bad"
+else
+  puts "Good"
 end
-
-for i in [*40..47]
-  puts "\e[#{i}m#{TEXT}\e[0m"
-end
-
-for i in [*40..47]
-  puts "\e[#{i}m#{"     "}\e[0m"
-end
-
-# "ABCDF".green
-
-puts (3..5).class
